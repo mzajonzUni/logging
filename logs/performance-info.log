@@ -1,0 +1,1 @@
+13:14:53.404 [main] INFO  pl.zajonz.performance.info - User with id: 1, email: test@test.pl, started method: test.test(..) at time: 2023-06-19T13:14:53.403223100 and the method lasted: 10 ms
