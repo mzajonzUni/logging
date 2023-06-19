@@ -5,7 +5,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class MeasuredInfo {
+public class PerformanceInfo {
 
     private int id;
     private String email;

@@ -3,22 +3,24 @@ package pl.zajonz.logging.service;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ActiveProfiles;
 import pl.zajonz.logging.model.PerformanceInfo;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest
-class ListenerTest {
+@ActiveProfiles("test")
+class ListenerIntegrationTest {
 
     @Autowired
     private Listener listener;
-    @SpyBean
+    @MockBean
     private LoggingService loggingService;
 
     @Test
@@ -35,7 +37,7 @@ class ListenerTest {
         listener.listenPerformance(performanceInfo);
 
         //then
-        verify(loggingService).logPerformance(any(PerformanceInfo.class));
+        verify(loggingService, times(1)).logPerformance(any(PerformanceInfo.class));
     }
 
     @Test
@@ -46,7 +48,6 @@ class ListenerTest {
         listener.listenInfo("test");
 
         //then
-        verify(loggingService).logInfo(anyString());
-
+        verify(loggingService, times(1)).logInfo(anyString());
     }
 }

@@ -7,17 +7,17 @@ import pl.zajonz.logging.model.PerformanceInfo;
 
 @Service
 @RequiredArgsConstructor
-public class PerformanceListener {
+public class Listener {
 
     private final LoggingService loggingService;
 
     @RabbitListener(queues = "${performance-info-queue}")
-    public void listen(PerformanceInfo message) {
+    public void listenPerformance(PerformanceInfo message) {
         loggingService.logPerformance(message);
     }
 
     @RabbitListener(queues = "${info-queue}")
-    public void listen(String message) {
+    public void listenInfo(String message) {
         loggingService.logInfo(message);
     }
 
